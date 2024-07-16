@@ -1,0 +1,348 @@
+[
+  {
+    "name": "createHost.ts",
+    "path": "src/langSvc/createHost.ts",
+    "content": {
+      "structured": {
+        "description": "An export function `createHost` that returns a Language Service Host for TypeScript compilation. The host provides functions for reading files, determining if a file exists, and resolving module names. The code also includes a normalization function `normalize` to modify file names as needed.",
+        "items": [
+          {
+            "id": "449bd1a0-40ab-2f9f-1a48-e0312797d076",
+            "ancestors": [],
+            "description": "Creates a Language Service Host object that provides file-related functionality for TypeScript compilation, including reading files, resolving module names, and getting script snapshots.",
+            "params": [
+              {
+                "name": "fileNames",
+                "default_value": null,
+                "optional": false,
+                "type_name": "string[]",
+                "description": "Used to pass in an array of file names to be processed by the language service host."
+              },
+              {
+                "name": "compilerOptions",
+                "default_value": null,
+                "optional": false,
+                "type_name": "_ts.CompilerOptions",
+                "description": "Used to provide options for the TypeScript compiler."
+              },
+              {
+                "name": "fileEntry",
+                "default_value": null,
+                "optional": false,
+                "type_name": "FileEntry",
+                "description": "Used to store file metadata, including file names and versions."
+              },
+              {
+                "name": "ts",
+                "default_value": null,
+                "optional": false,
+                "type_name": "typeof _ts",
+                "description": "Used to access the Language Service Host API, which provides methods for resolving module names, reading files, and other language-related functionality."
+              }
+            ],
+            "returns": {
+              "type_name": "_ts.LanguageServiceHost",
+              "description": "An object that provides various methods for resolving module names, reading files, and getting script snapshots."
+            },
+            "usage": {
+              "language": "typescript",
+              "code": "const fileNames = ['example1.ts', 'example2.ts'];\nconst compilerOptions = { target: 'esnext' };\nconst host = createHost(fileNames, compilerOptions);\nhost.getScriptVersion('example1.ts');\n",
+              "description": ""
+            },
+            "name": "createHost",
+            "location": {
+              "start": 9,
+              "insert": 9,
+              "offset": " ",
+              "indent": 0,
+              "comment": null
+            },
+            "item_type": "function",
+            "length": 90,
+            "docLength": null
+          },
+          {
+            "id": "f730b5b2-a8fe-33bc-734c-7ba56ea307fb",
+            "ancestors": [
+              "449bd1a0-40ab-2f9f-1a48-e0312797d076"
+            ],
+            "description": "Reads a file synchronously and returns its contents as a string or undefined on error.",
+            "params": [
+              {
+                "name": "fileName",
+                "default_value": null,
+                "optional": false,
+                "type_name": "string",
+                "description": "Used to represent the name of the file to be read."
+              },
+              {
+                "name": "encoding",
+                "default_value": "'utf8'",
+                "optional": true,
+                "type_name": "string | undefined",
+                "description": "Used to specify the encoding of the file content."
+              }
+            ],
+            "returns": {
+              "type_name": "string",
+              "description": "The contents of the file specified by the `fileName` parameter or undefined if an error occurs while reading the file."
+            },
+            "usage": {
+              "language": "typescript",
+              "code": "readFile('path/to/file', 'utf8')\n",
+              "description": ""
+            },
+            "name": "readFile",
+            "location": {
+              "start": 13,
+              "insert": 13,
+              "offset": " ",
+              "indent": 2,
+              "comment": null
+            },
+            "item_type": "function",
+            "length": 12,
+            "docLength": null
+          },
+          {
+            "id": "78b297ea-ec69-b19f-534c-ee6307404381",
+            "ancestors": [
+              "449bd1a0-40ab-2f9f-1a48-e0312797d076"
+            ],
+            "description": "Reads a file at the specified path using the `ts.sys.readFile()` method or falls back to reading it using the `readFile()` function if the former fails due to invalid file path or encoding options.",
+            "params": [
+              {
+                "name": "filePath",
+                "default_value": null,
+                "optional": false,
+                "type_name": "string",
+                "description": "Used to specify the path to the file that needs to be read."
+              }
+            ],
+            "returns": {
+              "type_name": "string | null",
+              "description": "The contents of the file at the specified path, or a fallback value if the file does not exist or cannot be read."
+            },
+            "usage": {
+              "language": "typescript",
+              "code": "const filePath = \"/path/to/file.txt\";\nconst encoding = \"utf8\";\nreadFileWithFallback(filePath, encoding);\n",
+              "description": ""
+            },
+            "name": "readFileWithFallback",
+            "location": {
+              "start": 26,
+              "insert": 26,
+              "offset": " ",
+              "indent": 2,
+              "comment": null
+            },
+            "item_type": "function",
+            "length": 6,
+            "docLength": null
+          },
+          {
+            "id": "656183a5-86d1-9792-f243-8f02cec74406",
+            "ancestors": [
+              "449bd1a0-40ab-2f9f-1a48-e0312797d076"
+            ],
+            "description": "Checks whether a file exists or not by checking if the file exists or if it returns an undefined value when read.",
+            "params": [],
+            "returns": {
+              "type_name": "boolean",
+              "description": "1 if the file exists and 0 otherwise."
+            },
+            "usage": {
+              "language": "typescript",
+              "code": "if(fileExists(\"sampleFile.txt\")){\n    // do something if file exists\n} else {\n    // do something if file does not exist\n}\n",
+              "description": ""
+            },
+            "name": "fileExists",
+            "location": {
+              "start": 34,
+              "insert": 34,
+              "offset": " ",
+              "indent": 4,
+              "comment": null
+            },
+            "item_type": "function",
+            "length": 3,
+            "docLength": null
+          },
+          {
+            "id": "755a3800-22ac-0487-0847-1568546a64ef",
+            "ancestors": [
+              "449bd1a0-40ab-2f9f-1a48-e0312797d076"
+            ],
+            "description": "Retrieves file content from a file entry and returns it as text. If the file exists, it uses the file's script snapshot to retrieve the content. Otherwise, it falls back to reading the file using a different method.",
+            "params": [],
+            "returns": {
+              "type_name": "string",
+              "description": "The contents of a file."
+            },
+            "usage": {
+              "language": "typescript",
+              "code": "const contents = readFile(\"myfile.txt\");\n",
+              "description": ""
+            },
+            "name": "readFile",
+            "location": {
+              "start": 37,
+              "insert": 37,
+              "offset": " ",
+              "indent": 4,
+              "comment": null
+            },
+            "item_type": "function",
+            "length": 7,
+            "docLength": null
+          },
+          {
+            "id": "e6bc25ce-11b7-eb8f-e04e-bfe7a89ba93d",
+            "ancestors": [
+              "449bd1a0-40ab-2f9f-1a48-e0312797d076"
+            ],
+            "description": "Retrieves the script snapshot for a given file name, checking if it exists and parsing its contents as needed.",
+            "params": [],
+            "returns": {
+              "type_name": "ts.ScriptSnapshot",
+              "description": "A snapshot of a TypeScript script represented as a JavaScript object."
+            },
+            "usage": {
+              "language": "typescript",
+              "code": "const getScriptSnapshot = fileName => {\n  if (fileEntry.has(fileName)) {\n    return fileEntry.get(fileName)!.scriptSnapshot\n  } else {\n    const isLibDTS = libDTSRegexp.test(fileName)\n    if (!isLibDTS && !fs.existsSync(fileName)) {\n      return undefined\n    }\n    const content = isLibDTS ? libDTS[fileName].content : fs.readFileSync(fileName).toString()\n\n    const scriptSnapshot = ts.ScriptSnapshot.fromString(content)\n    fileEntry.set(fileName, { version: 0, scriptSnapshot })\n    return scriptSnapshot\n  }\n}\n",
+              "description": ""
+            },
+            "name": "getScriptSnapshot",
+            "location": {
+              "start": 53,
+              "insert": 53,
+              "offset": " ",
+              "indent": 4,
+              "comment": null
+            },
+            "item_type": "function",
+            "length": 15,
+            "docLength": null
+          },
+          {
+            "id": "3c74df18-f55c-9ba4-924d-72c1aeb939a5",
+            "ancestors": [
+              "449bd1a0-40ab-2f9f-1a48-e0312797d076"
+            ],
+            "description": "Maps each input `moduleName` to a resolved module object or undefined, taking into account whether the name ends with `.vue$`. If it does, it returns a custom resolved module object; otherwise, it resolves the module using TypeScript's `ts.resolveModuleName` method and returns the resulting resolved module object.",
+            "params": [
+              {
+                "name": "moduleNames",
+                "default_value": null,
+                "optional": false,
+                "type_name": "string[]",
+                "description": "Used to provide a list of module names to resolve."
+              },
+              {
+                "name": "containingFile",
+                "default_value": null,
+                "optional": false,
+                "type_name": "string",
+                "description": "Passed as an argument to help identify the file where the modules are being resolved, which allows the function to correctly determine the module resolution."
+              },
+              {
+                "name": "_",
+                "default_value": null,
+                "optional": false,
+                "type_name": "any",
+                "description": "Not used or mentioned again in the code snippet provided, so its purpose is unknown or unspecified."
+              },
+              {
+                "name": "__",
+                "default_value": null,
+                "optional": false,
+                "type_name": "unknown",
+                "description": "Used to store the result of the module resolution process."
+              },
+              {
+                "name": "options",
+                "default_value": null,
+                "optional": false,
+                "type_name": "ts.ResolutionOptions",
+                "description": "Used to customize the module resolution process."
+              }
+            ],
+            "returns": {
+              "type_name": "_ts.ResolvedModule | undefined",
+              "description": "An array of resolved module names."
+            },
+            "usage": {
+              "language": "typescript",
+              "code": "const moduleNames = ['vue', 'react', 'angular'];\nconst containingFile = '/path/to/file.ts';\nconst options = { ... };\nconst resolvedModules = resolveModuleNames(moduleNames, containingFile, options);\n",
+              "description": ""
+            },
+            "name": "resolveModuleNames",
+            "location": {
+              "start": 71,
+              "insert": 71,
+              "offset": " ",
+              "indent": 4,
+              "comment": null
+            },
+            "item_type": "function",
+            "length": 19,
+            "docLength": null
+          },
+          {
+            "id": "b2cbc985-d3d2-f290-bb4a-81cf2def79fd",
+            "ancestors": [
+              "449bd1a0-40ab-2f9f-1a48-e0312797d076",
+              "3c74df18-f55c-9ba4-924d-72c1aeb939a5"
+            ],
+            "description": "Maps a list of module names to their resolved modules. If a module name ends with \".vue\", it returns a custom resolved module object with the file path normalized and resolved. Otherwise, it invokes the `ts.resolveModuleName()` method to retrieve the resolved module information for the given module name.",
+            "name": null,
+            "location": {
+              "start": 72,
+              "insert": 73,
+              "offset": " ",
+              "indent": 10,
+              "comment": null
+            },
+            "item_type": "higher_order_invocation",
+            "length": 16,
+            "docLength": null
+          },
+          {
+            "id": "9f3e139f-00a7-4da6-3c49-b2940758955b",
+            "ancestors": [],
+            "description": "Normalizes a given file name by replacing the file extension `.vue$` with `.ts`, if the file name matches the pattern `/.vue$/.test(fileName)`. Otherwise, it returns the original file name unchanged.",
+            "params": [
+              {
+                "name": "fileName",
+                "default_value": null,
+                "optional": false,
+                "type_name": "string",
+                "description": "Intended to represent the file name to be normalized, which may or may not end with the `.vue` suffix."
+              }
+            ],
+            "returns": {
+              "type_name": "string",
+              "description": "Either the original file name or the modified file name with the extension changed to \".ts\" if the file name ends with \".vue$\"."
+            },
+            "usage": {
+              "language": "typescript",
+              "code": "const normalizedFileName = normalize('MyFile.vue'); // returns 'MyFile.ts'\n",
+              "description": ""
+            },
+            "name": "normalize",
+            "location": {
+              "start": 102,
+              "insert": 102,
+              "offset": " ",
+              "indent": 0,
+              "comment": null
+            },
+            "item_type": "function",
+            "length": 6,
+            "docLength": null
+          }
+        ]
+      }
+    }
+  }
+]
